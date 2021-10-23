@@ -12,12 +12,24 @@ var _velocity := Vector2.ZERO
 var remaining_jumps = MAX_JUMPS
 ##################################
 
+
+### Constants
+const FLOOR_NORMAL := Vector2.UP
+##################################
+
 func _ready() -> void:
 	$AnimatedSprite.play("idle")
 
 func _physics_process(delta: float) -> void:
 	var direction := get_direction()
-	# _velocity = calculate_move_velocity(_velocity)
+	var is_jump_interrupted := Input.is_action_just_released("jump") and _velocity.y < 0.0
+	_velocity = calculate_move_velocity(
+		_velocity,
+		direction,
+		speed,
+		is_jump_interrupted
+		)
+	_velocity = move_and_slide(_velocity, FLOOR_NORMAL)
 	
 
 func get_direction() -> Vector2:
@@ -30,7 +42,7 @@ func calculate_move_velocity(
 	linear_velocity: Vector2,
 	direction: Vector2,
 	speed: Vector2,
-	remaining_jumps: int
+	is_jump_interrupted : bool
 ) -> Vector2:
 	"""
 	Returns player move velocity
