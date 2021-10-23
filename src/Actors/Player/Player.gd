@@ -1,25 +1,40 @@
 extends KinematicBody2D
 
 
-# Constants
-export var speed := 1000.0
+### Variables
+# Export
+export var speed := Vector2(300, 1000)
+export var gravity := 4000.0
+export var MAX_JUMPS := 2
+
+# Process
+var _velocity := Vector2.ZERO
+var remaining_jumps = MAX_JUMPS
+##################################
 
 func _ready() -> void:
 	$AnimatedSprite.play("idle")
 
+func _physics_process(delta: float) -> void:
+	var direction := get_direction()
+	# _velocity = calculate_move_velocity(_velocity)
+	
 
-func _process(delta: float) -> void:	
-	if Input.is_action_pressed("move_left"):
-		pass
-		
-	if Input.is_action_pressed("move_right"):
-		pass
-		
+func get_direction() -> Vector2:
+	return Vector2(
+		Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
+		-1 if (Input.is_action_just_pressed("jump") and is_on_floor() and remaining_jumps > 0) else 1
+	)
 
-
-func get_move_velocity() -> void:
+func calculate_move_velocity(
+	linear_velocity: Vector2,
+	direction: Vector2,
+	speed: Vector2,
+	remaining_jumps: int
+) -> Vector2:
 	"""
 	Returns player move velocity
 	Handles: Jump, Movement (Left and Right)
 	"""
-	pass
+	var out := linear_velocity
+	return Vector2.ZERO
