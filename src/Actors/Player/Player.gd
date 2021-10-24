@@ -6,6 +6,7 @@ extends KinematicBody2D
 export var speed := Vector2(300, 650)
 export var gravity := 2000.0
 export var MAX_JUMPS := 2
+export var MAX_GRAVITY := 600.0
 
 # Process
 var _velocity := Vector2.ZERO
@@ -25,6 +26,10 @@ func _physics_process(delta: float) -> void:
 	if is_on_floor():
 		remaining_jumps = MAX_JUMPS
 		
+	# Check if we need to teleport the player
+	if $Camera2D.limit_bottom < position.y:
+		teleport_to_top()
+		
 	# Getting Player Direction
 	var direction := get_direction()
 	_velocity = calculate_move_velocity(
@@ -39,6 +44,10 @@ func _physics_process(delta: float) -> void:
 	
 	# Changing Animations
 	change_animation(direction)
+	
+	
+	# Cap Max Gravity
+	_velocity.y = clamp(_velocity.y, -speed.y, MAX_GRAVITY)
 	
 	
 
@@ -94,3 +103,10 @@ func calculate_move_velocity(
 
 		
 	return out
+	
+	
+func teleport_to_top() -> void:
+	position.y = $Camera2D.limit_top
+	
+	# Reset Velocity.y
+	_velocity.y = 0
