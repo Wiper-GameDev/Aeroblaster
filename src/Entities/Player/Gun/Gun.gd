@@ -26,7 +26,7 @@ func _process(delta: float) -> void:
 	$Area2D/Sprite.flip_v = global_position.x > get_global_mouse_position().x
 	
 	# Handling Events
-	if Input.is_action_pressed("shot"):
+	if Input.is_action_just_pressed("shot"):
 		shot()
 
 
