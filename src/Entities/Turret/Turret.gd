@@ -25,7 +25,12 @@ func calculate_rotation_degrees(
 	player_pos: Vector2,
 	turret_pos: Vector2
 ) -> float:
-	return atan2(player_pos.y - turret_pos.y, player_pos.x -  turret_pos.x) * 180 / PI
+	var rot = atan2(player_pos.y - turret_pos.y, player_pos.x -  turret_pos.x) * 180 / PI
+	
+	if rot < 0:
+		rot += 360
+		
+	return rot
 
 func set_player_position(pos: Vector2) -> void:
 	player_pos = pos
@@ -33,8 +38,6 @@ func set_player_position(pos: Vector2) -> void:
 
 func smooth_barrel_rotation() -> void:
 	var angle := calculate_rotation_degrees(player_pos, position)
-	if angle < 0:
-		angle += 360
 	if $Barrel.rotation_degrees > angle:
 		$Barrel.rotation_degrees -= ROTATION_SPEED * get_process_delta_time()
 	elif $Barrel.rotation_degrees < angle:
@@ -62,5 +65,4 @@ func _on_VisibilityNotifier2D_screen_entered() -> void:
 
 
 func _on_VisibilityNotifier2D_screen_exited() -> void:
-	print("Exited")
 	enable_disable_processing()

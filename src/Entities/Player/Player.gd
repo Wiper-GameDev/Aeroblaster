@@ -64,14 +64,15 @@ func set_flip(direction: Vector2) -> void:
 	"""
 	Set sprite flip according to direction
 	"""
-	$AnimatedSprite.flip_h = $AnimatedSprite.flip_h if direction.x == 0 else direction.x < 0
+	# $AnimatedSprite.flip_h = $AnimatedSprite.flip_h if direction.x == 0 else direction.x < 0
+	$AnimatedSprite.flip_h = get_viewport().get_mouse_position().x < global_position.x
 	
 	
-func set_animation(anim: String) -> void:
+func set_animation(anim: String, backwards: bool = false) -> void:
 	if $AnimatedSprite.animation == anim:
 		return
 		
-	$AnimatedSprite.play(anim)
+	$AnimatedSprite.play(anim, backwards)
 	
 func change_animation(direction: Vector2) -> void:
 	if is_on_floor():
