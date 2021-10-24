@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "TileMap",
 "class": "GameMap",
 "language": "GDScript",
-"path": "res://src/Game/TileMap.gd"
+"path": "res://src/Game/Tilemap/TileMap.gd"
 } ]
 _global_script_class_icons={
 "GameMap": ""
@@ -78,6 +78,13 @@ shot={
 "events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
  ]
 }
+
+[layer_names]
+
+2d_physics/layer_1="world"
+2d_physics/layer_2="player"
+2d_physics/layer_3="player_bullet"
+2d_physics/layer_4="turret_bullet"
 
 [physics]
 
