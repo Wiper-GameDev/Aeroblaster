@@ -1,5 +1,7 @@
 extends TileMap
 
+class_name GameMap
+
 const BARRIER_ID := 22
 const INVISIBLE_BARRIER_ID := 23
 

@@ -8,6 +8,16 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "TileMap",
+"class": "GameMap",
+"language": "GDScript",
+"path": "res://src/Game/TileMap.gd"
+} ]
+_global_script_class_icons={
+"GameMap": ""
+}
+
 [application]
 
 config/name="Aeroblaster"
