@@ -49,6 +49,9 @@ func _physics_process(delta: float) -> void:
 	# Cap Max Gravity
 	_velocity.y = clamp(_velocity.y, -speed.y, MAX_GRAVITY)
 	
+	# Setting Turret Barrel Aim
+	get_tree().call_group("turrets", "set_player_position", position)
+	
 	
 
 func get_direction() -> Vector2:

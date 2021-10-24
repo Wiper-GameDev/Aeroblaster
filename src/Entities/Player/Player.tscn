@@ -14,7 +14,7 @@
 [ext_resource path="res://assets/images/entities/player/run/run_1.png" type="Texture" id=12]
 [ext_resource path="res://assets/images/entities/player/jump/jump_0.png" type="Texture" id=13]
 [ext_resource path="res://assets/images/entities/player/run/run_0.png" type="Texture" id=14]
-[ext_resource path="res://src/Actors/Player/Player.gd" type="Script" id=15]
+[ext_resource path="res://src/Entities/Player/Player.gd" type="Script" id=15]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
