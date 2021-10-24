@@ -34,8 +34,8 @@ func shot() -> void:
 	if not can_shot:
 		return
 	
-	#can_shot = false
-	#$ShotTimer.start()
+	can_shot = false
+	$ShotTimer.start()
 	var bullet = BULLET.instance()
 	get_tree().get_root().add_child( bullet)
 	var angle := calculate_rotation_degrees($Area2D/GunPosition2.global_position, $Area2D/GunPosition.global_position)
