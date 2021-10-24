@@ -8,6 +8,8 @@
 extents = Vector2( 21, 7 )
 
 [node name="Turret" type="Area2D"]
+monitoring = false
+monitorable = false
 script = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]

@@ -51,7 +51,7 @@ func _on_TurretFireTimer_timeout() -> void:
 
 func shot() -> void:
 	var bullet = BULLET.instance()
-	add_child(bullet)
+	get_tree().get_root().add_child(bullet)
 	var angle := calculate_rotation_degrees($Barrel/BarrelPosition2.global_position, $Barrel/BarrelPosition.global_position)
 	bullet.global_position = $Barrel/BarrelPosition.global_position
 	bullet.rotation_degrees = angle
