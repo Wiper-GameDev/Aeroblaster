@@ -11,7 +11,15 @@ func _process(delta: float) -> void:
 
 func _ready() -> void:
 	$TurretFireTimer.start()
+	enable_disable_processing()
 	
+	
+func enable_disable_processing() -> void:
+	var is_visible : bool = $VisibilityNotifier2D.is_on_screen()
+	set_process(is_visible)
+	set_process_input(is_visible)
+	set_physics_process(is_visible)
+	$TurretFireTimer.paused = not is_visible
 
 func calculate_rotation_degrees(
 	player_pos: Vector2,
@@ -45,3 +53,14 @@ func shot() -> void:
 	bullet.global_position = $Barrel/BarrelPosition.global_position
 	bullet.rotation_degrees = angle
 	bullet.add_to_group("turret_bullets")
+
+
+func _on_VisibilityNotifier2D_screen_entered() -> void:
+	enable_disable_processing()
+	
+
+
+
+func _on_VisibilityNotifier2D_screen_exited() -> void:
+	print("Exited")
+	enable_disable_processing()
